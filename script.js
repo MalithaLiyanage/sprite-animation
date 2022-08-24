@@ -1,3 +1,10 @@
+let chosenState = 'idle';
+const dropdown = document.getElementById('animations');
+dropdown.addEventListener('change', (e) => {
+    console.log(e.target.value);
+    chosenState = e.target.value
+})
+
 const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext('2d');
 const CANVAS_WIDTH = canvas.width = 600;
@@ -69,9 +76,9 @@ console.log(spriteAnimations);
 
 const animate = () => {
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-    let position = Math.floor(gameFrame/staggerFrame) % spriteAnimations['dizzy'].loc.length;
+    let position = Math.floor(gameFrame/staggerFrame) % spriteAnimations[chosenState].loc.length;
     let frameX = spriteWidth * position;
-    let frameY = spriteAnimations['dizzy'].loc[position].y
+    let frameY = spriteAnimations[chosenState].loc[position].y
 
     ctx.drawImage(playerImage, frameX, frameY, spriteWidth, spriteHeight, 0, 0, spriteWidth, spriteHeight);
 
